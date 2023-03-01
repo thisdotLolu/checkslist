@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Checks List</title>
+	<style>
+         body {
+			background-color: black;
+			color: white;
+		}
+		img {
+			width: 50px;
+			height: 50px;
+		}
+		.completed {
+			text-decoration: line-through;
+		}
+		.todolist-icon {
+			display: inline-block;
+			vertical-align: middle;
+			margin-top: 10px;
+		}
+        ul {
+			list-style-type: none;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<h1>
+		<span class="todolist-icon">
+			<img src="fullcheck.png" alt="Unchecked Icon">
+		</span>
+		Checks List
+	</h1>
+	<form>
+		<input type="text" id="new-todo-item" placeholder="Add a new task">
+		<button type="button" onclick="addTodo()">Add</button>
+	</form>
+	<ul id="todo-list">
+	</ul>
+
+	<script>
+		function addTodo() {
+			const newTodoItem = document.getElementById("new-todo-item").value;
+			const todoList = document.getElementById("todo-list");
+
+			const li = document.createElement("li");
+
+			// Create the image element
+			const img = document.createElement("img");
+			img.src = "emptycheck.png";
+			img.addEventListener("load", function() {
+				img.addEventListener("click", function() {
+					if (img.src.endsWith("emptycheck.png")) {
+						img.src = "fullcheck.png";
+						label.classList.add("completed");
+					} else {
+						img.src = "emptycheck.png";
+						label.classList.remove("completed");
+					}
+				});
+			});
+
+			// Create the label element
+			const label = document.createElement("label");
+			label.innerText = newTodoItem;
+
+			// Create the delete button element
+			const deleteButton = document.createElement("button");
+			deleteButton.innerText = "Delete";
+			deleteButton.addEventListener("click", function() {
+				li.remove();
+			});
+
+			// Create the span element for the image and add the image to it
+			const imgSpan = document.createElement("span");
+			imgSpan.classList.add("todolist-icon");
+			imgSpan.appendChild(img);
+
+			li.appendChild(imgSpan);
+			li.appendChild(label);
+			li.appendChild(deleteButton);
+			todoList.appendChild(li);
+
+			document.getElementById("new-todo-item").value = "";
+		}
+	</script>
+</body>
+</html>

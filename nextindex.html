@@ -3,114 +3,31 @@
 <head>
 	<title>Checks List</title>
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Mynerve&family=Nunito:wght@200;400;500;600;700;900&family=PT+Mono&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500&display=swap');
-        
-		body{
-			margin: 10px auto;	
-			max-width:600px;
-			border:1px solid white;
-			box-shadow: 1px 1px 10px 1px white;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
+        body {
 			background-color: black;
 			color: white;
 		}
-
-		img {
-			width: 50px;
-			height: 50px;
+        img {
+			width: 30px;
+			height: 30px;
+            margin-top: 20px;
 		}
-
 		.completed {
 			text-decoration: line-through;
 		}
-
-		.todolist-icon {
-			display: inline-block;
-			vertical-align: middle;
-			margin-top: 10px;
-		}
-
         ul {
 			list-style-type: none;
 			padding: 0;
 		}
-		form{
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			
-		}
-		form input{
-			padding: 10px;
-			border-radius: 5px;
-			border: 1px solid white;
-			background-color: black;
-			color: white;
-			width: 50%;
-			margin-right: 10px;
-			transition: 0.2s;
-		}
-		
-		form input:focus{
-			box-shadow: 1px 1px 8px 5px #ff00ff;	
-			border-color:#ff00ff;
-		}
-		button{
-			padding: 10px;
-			border-radius: 5px;
-			cursor: pointer;
-			font-family: 'Nunito',sans-serif; 
-			transition: 0.2s;
-		}
-		button:hover{
-			
-			border:1px solid white;
-			box-shadow: 1px 1px 8px 5px white;
-			/* color: white; */
-		}
-
-		li{
-			font-family: 'Nunito', sans-serif;
-			width: 80%;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			border: 1px solid grey;
-			padding: 5px;
-			border-radius: 5px;
-			transition: 1s;
-			margin-top: 5px;
-			margin-bottom: 5px;
-		}
-		ul{
-			width:80%;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			/* margin: 0 auto;	 */
-			transition: 1s;
-			margin-top: 5px;
-			margin-bottom: 5px;
-		}
 	</style>
 </head>
 <body>
-	<h1
-	style="font-family:'Mynerve', cursive; letter-spacing: .1cm;"
-	>
-		<span class="todolist-icon">
-			<img src="fullcheck.png" alt="Unchecked Icon">
-		</span>
-		Checks List
-	</h1>
+	<h1>
+        <img src="fullcheck.png" alt="Todo List Icon">
+        Todo List
+    </h1>
 	<form>
-		<input 
-		style="font-family: 'Nunito', sans-serif;"
-		type="text" id="new-todo-item" placeholder="Add a new task">
+		<input type="text" id="new-todo-item" placeholder="Add a new task">
 		<button type="button" onclick="addTodo()">Add</button>
 	</form>
 	<ul id="todo-list">
@@ -126,17 +43,17 @@
 			// Create the image element
 			const img = document.createElement("img");
 			img.src = "emptycheck.png";
-			img.addEventListener("load", function() {
-				img.addEventListener("click", function() {
-					if (img.src.endsWith("emptycheck_thick.png")) {
-						img.src = "fullcheck.png";
-						label.classList.add("completed");
-					} else {
-						img.src = "emptycheck.png";
-						label.classList.remove("completed");
-					}
-				});
-			});
+            img.addEventListener("load", function() {
+                img.addEventListener("click", function() {
+                    if (img.src.endsWith("emptycheck.png")) {
+                        img.src = "fullcheck.png";
+                        label.classList.add("completed");
+                    } else {
+                        img.src = "emptycheck.png";
+                        label.classList.remove("completed");
+                    }
+                });
+            });
 
 			// Create the label element
 			const label = document.createElement("label");
@@ -149,12 +66,7 @@
 				li.remove();
 			});
 
-			// Create the span element for the image and add the image to it
-			const imgSpan = document.createElement("span");
-			imgSpan.classList.add("todolist-icon");
-			imgSpan.appendChild(img);
-
-			li.appendChild(imgSpan);
+			li.appendChild(img);
 			li.appendChild(label);
 			li.appendChild(deleteButton);
 			todoList.appendChild(li);
